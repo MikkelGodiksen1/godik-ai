@@ -15,8 +15,8 @@
 }
 
 .competitors__col--accent {
-  background: var(--color-accent);
-  border-left-color: var(--color-accent) !important;
+  background: var(--color-bg-dark);
+  border-left-color: var(--color-bg-dark) !important;
 }
 
 .competitors__label {
