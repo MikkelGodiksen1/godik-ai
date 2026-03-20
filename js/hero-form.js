@@ -7,6 +7,17 @@
   const data = {};
   let current = 1;
 
+  // Danish phone: 8 digits, optionally prefixed with +45
+  function isValidDanishPhone(val) {
+    const cleaned = val.replace(/[\s\-().]/g, '');
+    return /^(\+45)?\d{8}$/.test(cleaned);
+  }
+
+  // Basic email validation
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val);
+  }
+
   function showStep(n) {
     steps.forEach(s => {
       const isTarget = s.dataset.step === String(n) || s.dataset.step === n;
@@ -20,12 +31,30 @@
 
     current = n;
 
-    // Auto-focus input in new step
     const activeStep = form.querySelector('.hero-form__step.active');
     if (activeStep) {
       const input = activeStep.querySelector('.hero-form__input');
       if (input) setTimeout(() => input.focus(), 150);
     }
+  }
+
+  function showError(input, msg) {
+    input.classList.add('hero-form__input--error');
+    // Remove existing error message
+    const existing = input.parentNode.querySelector('.hero-form__error');
+    if (existing) existing.remove();
+    // Add error message
+    const el = document.createElement('span');
+    el.className = 'hero-form__error';
+    el.textContent = msg;
+    input.after(el);
+    input.focus();
+  }
+
+  function clearError(input) {
+    input.classList.remove('hero-form__input--error');
+    const existing = input.parentNode.querySelector('.hero-form__error');
+    if (existing) existing.remove();
   }
 
   // "Næste" buttons
@@ -34,12 +63,20 @@
       const step = btn.closest('.hero-form__step');
       const input = step.querySelector('.hero-form__input');
       if (input && !input.value.trim()) {
-        input.classList.add('hero-form__input--error');
-        input.focus();
+        showError(input, 'Udfyld venligst dette felt');
         return;
       }
+
+      // Phone validation (step 4)
+      if (input && input.name === 'phone') {
+        if (!isValidDanishPhone(input.value.trim())) {
+          showError(input, 'Indtast et gyldigt dansk telefonnummer (8 cifre)');
+          return;
+        }
+      }
+
       if (input) {
-        input.classList.remove('hero-form__input--error');
+        clearError(input);
         data[input.name] = input.value.trim();
       }
       showStep(current + 1);
@@ -57,7 +94,7 @@
     });
 
     input.addEventListener('input', () => {
-      input.classList.remove('hero-form__input--error');
+      clearError(input);
     });
   });
 
@@ -75,7 +112,14 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const emailInput = form.querySelector('[name="email"]');
-    if (emailInput) data.email = emailInput.value.trim();
+    if (emailInput) {
+      const email = emailInput.value.trim();
+      if (!isValidEmail(email)) {
+        showError(emailInput, 'Indtast en gyldig emailadresse');
+        return;
+      }
+      data.email = email;
+    }
     console.log('Form data:', data);
     showStep('done');
   });

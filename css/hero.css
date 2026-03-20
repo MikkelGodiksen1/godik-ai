@@ -76,8 +76,8 @@
   min-height: 220px;
   display: flex;
   flex-direction: column;
-  width: 360px;
-  margin-right: -60px;
+  width: 340px;
+  margin-right: -120px;
   justify-content: space-between;
 }
 
@@ -139,6 +139,12 @@
 
 .hero-form__input--error {
   border-bottom-color: #ef4444;
+}
+
+.hero-form__error {
+  font-size: 0.8125rem;
+  color: #ef4444;
+  margin-top: -4px;
 }
 
 .hero-form__next,
