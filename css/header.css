@@ -29,6 +29,13 @@
   letter-spacing: -0.02em;
   text-decoration: none;
   transition: color 0.3s ease;
+  animation: logo-float 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .header--scrolled .header__logo {

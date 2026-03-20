@@ -73,15 +73,55 @@
       <div class="hero__overlay"></div>
 
       <div class="container hero__container">
-        <div class="hero__content">
-          <p class="hero__tag">Gratis og uforpligtende</p>
-          <h1>Skræddersyet udkast til din hjemmeside, helt gratis</h1>
-          <p class="hero__subtitle">Drop supersælgere og uigennemskuelige kontrakter. Få et professionelt hjemmesideudkast uden at forpligte dig til noget.</p>
-
-          <div class="hero__ctas">
-            <a href="#gratis-udkast" class="btn-primary hero__btn-primary">Få et hjemmesideudkast</a>
-            <a href="#kontakt" class="btn-secondary hero__btn-secondary">Kontakt mig</a>
+        <div class="hero__grid">
+          <div class="hero__content">
+            <p class="hero__tag">Gratis og uforpligtende</p>
+            <h1>Skræddersyet udkast til din hjemmeside, helt gratis</h1>
+            <p class="hero__subtitle">Drop supersælgere og uigennemskuelige kontrakter. Få et professionelt hjemmesideudkast uden at forpligte dig til noget.</p>
           </div>
+
+          <form class="hero-form" id="hero-form">
+            <div class="hero-form__step active" data-step="1">
+              <label class="hero-form__label">Hvad hedder din virksomhed?</label>
+              <input type="text" class="hero-form__input" name="company" placeholder="Virksomhedsnavn" required>
+              <button type="button" class="hero-form__next">Næste &rarr;</button>
+            </div>
+            <div class="hero-form__step" data-step="2">
+              <label class="hero-form__label">Hvad har du brug for?</label>
+              <div class="hero-form__choices">
+                <button type="button" class="hero-form__choice" data-value="hjemmeside">Hjemmeside</button>
+                <button type="button" class="hero-form__choice" data-value="webshop">Webshop</button>
+              </div>
+            </div>
+            <div class="hero-form__step" data-step="3">
+              <label class="hero-form__label">Hvad hedder du?</label>
+              <input type="text" class="hero-form__input" name="name" placeholder="Dit navn" required>
+              <button type="button" class="hero-form__next">Næste &rarr;</button>
+            </div>
+            <div class="hero-form__step" data-step="4">
+              <label class="hero-form__label">Dit telefonnummer</label>
+              <input type="tel" class="hero-form__input" name="phone" placeholder="+45 XX XX XX XX" required>
+              <button type="button" class="hero-form__next">Næste &rarr;</button>
+            </div>
+            <div class="hero-form__step" data-step="5">
+              <label class="hero-form__label">Din email</label>
+              <input type="email" class="hero-form__input" name="email" placeholder="din@email.dk" required>
+              <button type="submit" class="hero-form__submit">Send mig et gratis udkast</button>
+            </div>
+            <div class="hero-form__step" data-step="done">
+              <div class="hero-form__success">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                <p>Tak! Jeg vender tilbage inden for 24 timer.</p>
+              </div>
+            </div>
+            <div class="hero-form__progress">
+              <span class="hero-form__dot active"></span>
+              <span class="hero-form__dot"></span>
+              <span class="hero-form__dot"></span>
+              <span class="hero-form__dot"></span>
+              <span class="hero-form__dot"></span>
+            </div>
+          </form>
         </div>
 
         <div class="hero__features">
@@ -313,20 +353,9 @@
             <ul>
               <li class="competitors__item competitors__item--negative">Høje priser</li>
               <li class="competitors__item competitors__item--negative">Lange uopsigelige kontrakter</li>
-              <li class="competitors__item competitors__item--negative">De ejer siden – ikke dig</li>
-              <li class="competitors__item competitors__item--negative">Skiftende kontaktpersoner</li>
+              <li class="competitors__item competitors__item--negative">De ejer siden – den lukkes hvis ikke du betaler</li>
+              <li class="competitors__item competitors__item--negative">Skiftende kontaktpersoner og lange behandlingstider</li>
               <li class="competitors__item competitors__item--positive">Professionelt setup</li>
-            </ul>
-          </div>
-
-          <div class="competitors__col competitors__col--highlighted reveal">
-            <p class="competitors__label">Godik.ai</p>
-            <ul>
-              <li class="competitors__item competitors__item--positive">Fair og gennemskuelige priser</li>
-              <li class="competitors__item competitors__item--positive">Ingen binding overhovedet</li>
-              <li class="competitors__item competitors__item--positive">100% ejerskab – siden er din</li>
-              <li class="competitors__item competitors__item--positive">Fast kontaktperson, hurtig support</li>
-              <li class="competitors__item competitors__item--positive">Professionelt og pålideligt setup</li>
             </ul>
           </div>
 
@@ -336,8 +365,19 @@
               <li class="competitors__item competitors__item--negative">Høje priser</li>
               <li class="competitors__item competitors__item--positive">Ingen binding</li>
               <li class="competitors__item competitors__item--mixed">Du ejer som regel siden</li>
-              <li class="competitors__item competitors__item--negative">Afhænger af én person</li>
-              <li class="competitors__item competitors__item--mixed">Kan være uprofessionelt</li>
+              <li class="competitors__item competitors__item--negative">Afhænger af en person (Ofte lang svar tid)</li>
+              <li class="competitors__item competitors__item--mixed">Kan være uprofessionelt og ustruktureret</li>
+            </ul>
+          </div>
+
+          <div class="competitors__col competitors__col--accent reveal">
+            <p class="competitors__label">Godik.ai</p>
+            <ul>
+              <li class="competitors__item">Fair og gennemskuelige priser</li>
+              <li class="competitors__item">Ingen binding</li>
+              <li class="competitors__item">100% ejerskab – siden er din</li>
+              <li class="competitors__item">Fast kontaktperson og hurtig support</li>
+              <li class="competitors__item">Professionelt og pålideligt setup</li>
             </ul>
           </div>
         </div>
@@ -559,5 +599,6 @@
   <script src="js/faq.js" defer></script>
   <script src="js/scroll-animations.js" defer></script>
   <script src="js/counter.js" defer></script>
+  <script src="js/hero-form.js" defer></script>
 </body>
 </html>

@@ -1,41 +1,37 @@
-/* ============================================
-   Competitors
-   ============================================ */
-
 .competitors__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .competitors__col {
-  padding: var(--space-8);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
 }
 
-.competitors__col--highlighted,
-.competitors__col--godik {
-  border-color: var(--color-text);
-  border-width: 2px;
+.competitors__col + .competitors__col {
+  border-left: 1px solid var(--color-border);
 }
 
-.competitors__label,
-.competitors__col h3 {
-  font-size: 0.8125rem;
-  font-weight: 600;
+.competitors__col--accent {
+  background: var(--color-accent);
+  border-left-color: var(--color-accent) !important;
+}
+
+.competitors__label {
+  font-size: 0.875rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.03em;
+  color: var(--color-text);
   margin-bottom: var(--space-6);
-  text-align: center;
 }
 
-.competitors__col--highlighted .competitors__label,
-.competitors__col--highlighted h3,
-.competitors__col--godik .competitors__label,
-.competitors__col--godik h3 {
-  color: var(--color-text);
+.competitors__col--accent .competitors__label {
+  color: #fff;
+  font-size: 1.125rem;
+  letter-spacing: 0;
 }
 
 .competitors__item {
@@ -51,8 +47,12 @@
   border-top: 1px solid var(--color-border-light);
 }
 
-.competitors__item svg {
-  flex-shrink: 0;
+.competitors__col--accent .competitors__item {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.competitors__col--accent .competitors__item + .competitors__item {
+  border-top-color: rgba(255, 255, 255, 0.15);
 }
 
 .competitors__item--positive::before {
@@ -85,19 +85,15 @@
 @media (max-width: 810px) {
   .competitors__grid {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
   }
 
-  .competitors__col--highlighted,
-  .competitors__col--godik {
+  .competitors__col + .competitors__col {
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .competitors__col--accent {
     order: -1;
-  }
-}
-
-@media (min-width: 811px) and (max-width: 1024px) {
-  .competitors__grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
+    border-top: none !important;
   }
 }
