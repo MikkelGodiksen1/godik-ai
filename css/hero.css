@@ -34,11 +34,10 @@
 /* Two-column grid: text left, form right */
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: var(--space-16);
+  grid-template-columns: 1fr auto;
+  gap: var(--space-8);
   align-items: center;
   margin-bottom: var(--space-16);
-  justify-items: end;
 }
 
 .hero__content {
@@ -77,6 +76,8 @@
   min-height: 220px;
   display: flex;
   flex-direction: column;
+  width: 360px;
+  margin-right: -60px;
   justify-content: space-between;
 }
 
