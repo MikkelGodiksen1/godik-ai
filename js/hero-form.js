@@ -120,7 +120,21 @@
       }
       data.email = email;
     }
-    console.log('Form data:', data);
+
+    // Send to Telegram
+    const msg = `🌐 Ny henvendelse fra Godik.ai\n\n` +
+      `🏢 Virksomhed: ${data.company || '-'}\n` +
+      `📋 Type: ${data.type || '-'}\n` +
+      `👤 Navn: ${data.name || '-'}\n` +
+      `📞 Telefon: ${data.phone || '-'}\n` +
+      `📧 Email: ${data.email || '-'}`;
+
+    fetch('https://api.telegram.org/bot8386618676:AAHGK32MGSU58lqnC5keUdVQH5ZqE0yTaEU/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: 6339427304, text: msg })
+    }).catch(() => {});
+
     showStep('done');
   });
 })();
