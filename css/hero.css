@@ -38,9 +38,11 @@
   gap: var(--space-16);
   align-items: center;
   margin-bottom: var(--space-16);
+  justify-items: end;
 }
 
 .hero__content {
+  justify-self: start;
   max-width: 640px;
 }
 
@@ -125,6 +127,13 @@
 
 .hero-form__input:focus {
   border-bottom-color: rgba(255, 255, 255, 0.6);
+  outline: none;
+  box-shadow: none;
+}
+
+.hero-form__input:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .hero-form__input--error {
