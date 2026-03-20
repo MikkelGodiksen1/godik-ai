@@ -1,0 +1,44 @@
+/* ============================================
+   Values
+   ============================================ */
+
+.values {
+  background: var(--color-bg-alt);
+}
+
+.values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.values__card {
+  background: var(--color-bg);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+}
+
+.values__card h3 {
+  margin-bottom: var(--space-3);
+  font-size: 1rem;
+}
+
+.values__card p {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 810px) {
+  .values__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@media (min-width: 811px) and (max-width: 1024px) {
+  .values__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

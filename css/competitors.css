@@ -1,0 +1,103 @@
+/* ============================================
+   Competitors
+   ============================================ */
+
+.competitors__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.competitors__col {
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.competitors__col--highlighted,
+.competitors__col--godik {
+  border-color: var(--color-text);
+  border-width: 2px;
+}
+
+.competitors__label,
+.competitors__col h3 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.competitors__col--highlighted .competitors__label,
+.competitors__col--highlighted h3,
+.competitors__col--godik .competitors__label,
+.competitors__col--godik h3 {
+  color: var(--color-text);
+}
+
+.competitors__item {
+  padding: var(--space-3) 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.competitors__item + .competitors__item {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.competitors__item svg {
+  flex-shrink: 0;
+}
+
+.competitors__item--positive::before {
+  content: '\2713';
+  color: var(--color-positive);
+  font-weight: 600;
+  font-size: 0.875rem;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.competitors__item--negative::before {
+  content: '\2717';
+  color: var(--color-negative);
+  font-weight: 600;
+  font-size: 0.875rem;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.competitors__item--mixed::before {
+  content: '~';
+  color: var(--color-mixed);
+  font-weight: 600;
+  font-size: 0.875rem;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 810px) {
+  .competitors__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .competitors__col--highlighted,
+  .competitors__col--godik {
+    order: -1;
+  }
+}
+
+@media (min-width: 811px) and (max-width: 1024px) {
+  .competitors__grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
