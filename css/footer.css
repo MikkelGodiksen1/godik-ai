@@ -228,54 +228,176 @@
 
 
 /* ============================================
-   Final CTA
+   Form Section (standalone CTA form)
    ============================================ */
 
-.final-cta {
+.form-section {
   background: var(--color-bg-dark);
   padding: var(--section-py) 0;
 }
 
-.final-cta__inner {
-  max-width: 520px;
-  text-align: center;
-  margin: 0 auto;
+.form-section__inner {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-16);
+  align-items: center;
 }
 
-.final-cta h2 {
+.form-section__text h2 {
   color: var(--color-text-light);
   margin-bottom: var(--space-4);
 }
 
-.final-cta p {
+.form-section__text p:not(.section-tag) {
   color: var(--color-text-muted);
-  margin-bottom: var(--space-8);
   font-size: 1.0625rem;
   line-height: 1.7;
 }
 
-.final-cta__buttons {
+/* CTA form – same style as hero form but on dark bg */
+.cta-form {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cta-form__step {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-5);
+  animation: formFadeIn 0.3s ease;
+}
+
+.cta-form__step.active { display: flex; }
+
+.cta-form__label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.cta-form__input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1.0625rem;
+  font-family: inherit;
+  padding: var(--space-3) 0;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.cta-form__input::placeholder { color: rgba(255, 255, 255, 0.35); }
+.cta-form__input:focus { border-bottom-color: rgba(255, 255, 255, 0.6); outline: none; box-shadow: none; }
+.cta-form__input:focus-visible { outline: none; box-shadow: none; }
+.cta-form__input--error { border-bottom-color: #ef4444; }
+
+.cta-form__error {
+  font-size: 0.8125rem;
+  color: #ef4444;
+  margin-top: -4px;
+}
+
+.cta-form__next,
+.cta-form__submit {
+  background: #fff;
+  color: var(--color-text);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-6);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition);
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}
+
+.cta-form__next:hover,
+.cta-form__submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.cta-form__choices {
   display: flex;
   gap: var(--space-3);
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
-.btn--light {
-  background: white;
+.cta-form__choice {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: inherit;
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.cta-form__choice:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cta-form__choice.selected {
+  background: #fff;
   color: var(--color-text);
+  border-color: #fff;
 }
 
-.btn--light:hover {
-  opacity: 0.9;
+.cta-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+  padding: var(--space-6) 0;
 }
 
-.btn-secondary--light {
-  border-color: rgba(255, 255, 255, 0.15);
-  color: var(--color-text-muted);
+.cta-form__success p { color: rgba(255, 255, 255, 0.9); }
+
+.cta-form__progress {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-6);
 }
 
-.btn-secondary--light:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--color-text-light);
+.cta-form__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all var(--transition);
+}
+
+.cta-form__dot.active {
+  background: rgba(255, 255, 255, 0.9);
+  width: 18px;
+  border-radius: 3px;
+}
+
+.cta-form__dot.done { background: rgba(255, 255, 255, 0.5); }
+
+@media (max-width: 810px) {
+  .form-section__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .cta-form { max-width: 400px; }
 }

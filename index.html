@@ -43,7 +43,7 @@
         </ul>
       </nav>
 
-      <a href="#gratis-udkast" class="btn-primary header__cta">Få gratis udkast</a>
+      <a href="#kontakt" class="btn-primary header__cta">Få gratis udkast</a>
 
       <button class="header__hamburger" id="hamburger" aria-label="Åbn menu">
         <span></span>
@@ -58,7 +58,7 @@
         <li><a href="#konkurrenter">Hvorfor os</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
-        <li><a href="#gratis-udkast" class="btn-primary" style="width:100%;margin-top:var(--space-2);">Få gratis udkast</a></li>
+        <li><a href="#kontakt" class="btn-primary" style="width:100%;margin-top:var(--space-2);">Få gratis udkast</a></li>
       </ul>
     </div>
   </header>
@@ -373,11 +373,11 @@
           <div class="competitors__col competitors__col--accent reveal">
             <p class="competitors__label">Godik.ai</p>
             <ul>
-              <li class="competitors__item">Fair og gennemskuelige priser</li>
-              <li class="competitors__item">Ingen binding</li>
-              <li class="competitors__item">100% ejerskab – siden er din</li>
-              <li class="competitors__item">Fast kontaktperson og hurtig support</li>
-              <li class="competitors__item">Professionelt og pålideligt setup</li>
+              <li class="competitors__item competitors__item--positive">Fair og gennemskuelige priser</li>
+              <li class="competitors__item competitors__item--positive">Ingen binding</li>
+              <li class="competitors__item competitors__item--positive">100% ejerskab – siden er din</li>
+              <li class="competitors__item competitors__item--positive">Fast kontaktperson og hurtig support</li>
+              <li class="competitors__item competitors__item--positive">Professionelt og pålideligt setup</li>
             </ul>
           </div>
         </div>
@@ -484,17 +484,58 @@
       </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="final-cta" id="kontakt">
+    <!-- FORMULAR SEKTION -->
+    <section class="form-section" id="kontakt">
       <div class="container">
-        <div class="final-cta__inner">
-          <p class="section-tag" style="color: var(--color-text-muted);">Klar til at komme i gang?</p>
-          <h2>Få dit udkast til 0 kr.</h2>
-          <p>Jeg tilbyder gratis skræddersyede hjemmesideudkast helt uforpligtende. Ingen binding, ingen overraskelser.</p>
-          <div class="final-cta__buttons">
-            <a href="#gratis-udkast" class="btn-primary btn--light">Få et hjemmesideudkast</a>
-            <a href="mailto:mikkel@godik.ai" class="btn-secondary btn-secondary--light">Skriv til mig</a>
+        <div class="form-section__inner">
+          <div class="form-section__text">
+            <p class="section-tag" style="color: var(--color-text-muted);">Klar til at komme i gang?</p>
+            <h2>Få dit udkast til 0 kr.</h2>
+            <p>Udfyld formularen og jeg sender dig et skræddersyet udkast inden for få dage. Helt gratis og 100% uforpligtende.</p>
           </div>
+
+          <form class="cta-form" id="cta-form">
+            <div class="cta-form__step active" data-step="1">
+              <label class="cta-form__label">Hvad hedder din virksomhed?</label>
+              <input type="text" class="cta-form__input" name="company" placeholder="Virksomhedsnavn" required>
+              <button type="button" class="cta-form__next">Næste &rarr;</button>
+            </div>
+            <div class="cta-form__step" data-step="2">
+              <label class="cta-form__label">Hvad har du brug for?</label>
+              <div class="cta-form__choices">
+                <button type="button" class="cta-form__choice" data-value="hjemmeside">Hjemmeside</button>
+                <button type="button" class="cta-form__choice" data-value="webshop">Webshop</button>
+              </div>
+            </div>
+            <div class="cta-form__step" data-step="3">
+              <label class="cta-form__label">Hvad hedder du?</label>
+              <input type="text" class="cta-form__input" name="name" placeholder="Dit navn" required>
+              <button type="button" class="cta-form__next">Næste &rarr;</button>
+            </div>
+            <div class="cta-form__step" data-step="4">
+              <label class="cta-form__label">Dit telefonnummer</label>
+              <input type="tel" class="cta-form__input" name="phone" placeholder="+45 XX XX XX XX" required>
+              <button type="button" class="cta-form__next">Næste &rarr;</button>
+            </div>
+            <div class="cta-form__step" data-step="5">
+              <label class="cta-form__label">Din email</label>
+              <input type="email" class="cta-form__input" name="email" placeholder="din@email.dk" required>
+              <button type="submit" class="cta-form__submit">Send mig et gratis udkast</button>
+            </div>
+            <div class="cta-form__step" data-step="done">
+              <div class="cta-form__success">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                <p>Tak! Jeg vender tilbage inden for 24 timer.</p>
+              </div>
+            </div>
+            <div class="cta-form__progress">
+              <span class="cta-form__dot active"></span>
+              <span class="cta-form__dot"></span>
+              <span class="cta-form__dot"></span>
+              <span class="cta-form__dot"></span>
+              <span class="cta-form__dot"></span>
+            </div>
+          </form>
         </div>
       </div>
     </section>

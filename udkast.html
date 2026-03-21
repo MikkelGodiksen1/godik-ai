@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Få dit gratis hjemmesideudkast – Godik.ai</title>
+  <meta name="description" content="Udfyld formularen og få et gratis skræddersyet hjemmesideudkast. Helt uforpligtende, ingen binding.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+
+  <style>
+    body {
+      background: var(--color-bg-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-6);
+    }
+
+    .form-page {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .form-page__logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: var(--space-10);
+      animation: logo-float 3s ease-in-out infinite;
+    }
+
+    @keyframes logo-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .form-page h1 {
+      color: #fff;
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+    }
+
+    .form-page__sub {
+      color: var(--color-text-muted);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-10);
+    }
+
+    .form-page__form {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .fp__step {
+      display: none;
+      flex-direction: column;
+      gap: var(--space-5);
+      animation: formFadeIn 0.3s ease;
+    }
+
+    .fp__step.active { display: flex; }
+
+    @keyframes formFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fp__label {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .fp__input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 1.0625rem;
+      font-family: inherit;
+      padding: var(--space-3) 0;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .fp__input::placeholder { color: rgba(255, 255, 255, 0.35); }
+    .fp__input:focus { border-bottom-color: rgba(255, 255, 255, 0.6); outline: none; box-shadow: none; }
+    .fp__input:focus-visible { outline: none; box-shadow: none; }
+    .fp__input--error { border-bottom-color: #ef4444; }
+    .fp__error { font-size: 0.8125rem; color: #ef4444; margin-top: -4px; }
+
+    .fp__next,
+    .fp__submit {
+      background: #fff;
+      color: var(--color-text);
+      border: none;
+      border-radius: var(--radius-full);
+      padding: var(--space-3) var(--space-6);
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity var(--transition), transform var(--transition);
+      align-self: flex-start;
+      margin-top: var(--space-2);
+    }
+
+    .fp__next:hover,
+    .fp__submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .fp__choices { display: flex; gap: var(--space-3); }
+
+    .fp__choice {
+      flex: 1;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-full);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: inherit;
+      padding: var(--space-3) var(--space-4);
+      cursor: pointer;
+      transition: all var(--transition);
+      text-align: center;
+    }
+
+    .fp__choice:hover { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.06); }
+    .fp__choice.selected { background: #fff; color: var(--color-text); border-color: #fff; }
+
+    .fp__success {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+      text-align: center;
+      padding: var(--space-6) 0;
+    }
+
+    .fp__success p { color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; }
+
+    .fp__progress {
+      display: flex;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-top: var(--space-6);
+    }
+
+    .fp__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all var(--transition);
+    }
+
+    .fp__dot.active { background: rgba(255, 255, 255, 0.9); width: 18px; border-radius: 3px; }
+    .fp__dot.done { background: rgba(255, 255, 255, 0.5); }
+
+    .form-page__footer {
+      margin-top: var(--space-8);
+      color: var(--color-text-muted);
+      font-size: 0.8125rem;
+    }
+
+    .form-page__footer a {
+      color: var(--color-text-muted);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .fp__choices { flex-direction: column; }
+      .form-page__form { padding: var(--space-6); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-page">
+    <a href="index.html" class="form-page__logo">Godik.ai</a>
+
+    <h1>Få dit gratis udkast</h1>
+    <p class="form-page__sub">Udfyld de 5 felter herunder, og jeg sender dig et skræddersyet hjemmesideudkast inden for få dage. Helt gratis og uforpligtende.</p>
+
+    <form class="form-page__form" id="page-form">
+      <div class="fp__step active" data-step="1">
+        <label class="fp__label">Hvad hedder din virksomhed?</label>
+        <input type="text" class="fp__input" name="company" placeholder="Virksomhedsnavn" required>
+        <button type="button" class="fp__next">Næste &rarr;</button>
+      </div>
+      <div class="fp__step" data-step="2">
+        <label class="fp__label">Hvad har du brug for?</label>
+        <div class="fp__choices">
+          <button type="button" class="fp__choice" data-value="hjemmeside">Hjemmeside</button>
+          <button type="button" class="fp__choice" data-value="webshop">Webshop</button>
+        </div>
+      </div>
+      <div class="fp__step" data-step="3">
+        <label class="fp__label">Hvad hedder du?</label>
+        <input type="text" class="fp__input" name="name" placeholder="Dit navn" required>
+        <button type="button" class="fp__next">Næste &rarr;</button>
+      </div>
+      <div class="fp__step" data-step="4">
+        <label class="fp__label">Dit telefonnummer</label>
+        <input type="tel" class="fp__input" name="phone" placeholder="+45 XX XX XX XX" required>
+        <button type="button" class="fp__next">Næste &rarr;</button>
+      </div>
+      <div class="fp__step" data-step="5">
+        <label class="fp__label">Din email</label>
+        <input type="email" class="fp__input" name="email" placeholder="din@email.dk" required>
+        <button type="submit" class="fp__submit">Send mig et gratis udkast</button>
+      </div>
+      <div class="fp__step" data-step="done">
+        <div class="fp__success">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <p>Tak! Jeg vender tilbage inden for 24 timer.</p>
+        </div>
+      </div>
+      <div class="fp__progress">
+        <span class="fp__dot active"></span>
+        <span class="fp__dot"></span>
+        <span class="fp__dot"></span>
+        <span class="fp__dot"></span>
+        <span class="fp__dot"></span>
+      </div>
+    </form>
+
+    <p class="form-page__footer">
+      <a href="index.html">← Tilbage til godik.ai</a>
+    </p>
+  </div>
+
+  <script>
+  (() => {
+    const form = document.getElementById('page-form');
+    if (!form) return;
+
+    const steps = form.querySelectorAll('.fp__step[data-step]');
+    const dots = form.querySelectorAll('.fp__dot');
+    const data = {};
+    let current = 1;
+
+    function isValidDanishPhone(val) {
+      return /^(\+45)?\d{8}$/.test(val.replace(/[\s\-().]/g, ''));
+    }
+
+    function isValidEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val);
+    }
+
+    function showStep(n) {
+      steps.forEach(s => s.classList.toggle('active', s.dataset.step === String(n) || s.dataset.step === n));
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i < (typeof n === 'number' ? n : 5));
+        d.classList.toggle('done', i < (typeof n === 'number' ? n - 1 : 5));
+      });
+      current = n;
+      const active = form.querySelector('.fp__step.active');
+      if (active) {
+        const input = active.querySelector('.fp__input');
+        if (input) setTimeout(() => input.focus(), 150);
+      }
+    }
+
+    function showError(input, msg) {
+      input.classList.add('fp__input--error');
+      let el = input.parentNode.querySelector('.fp__error');
+      if (!el) { el = document.createElement('span'); el.className = 'fp__error'; input.after(el); }
+      el.textContent = msg;
+      input.focus();
+    }
+
+    function clearError(input) {
+      input.classList.remove('fp__input--error');
+      const el = input.parentNode.querySelector('.fp__error');
+      if (el) el.remove();
+    }
+
+    form.querySelectorAll('.fp__next').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = btn.closest('.fp__step');
+        const input = step.querySelector('.fp__input');
+        if (input && !input.value.trim()) { showError(input, 'Udfyld venligst dette felt'); return; }
+        if (input && input.name === 'phone' && !isValidDanishPhone(input.value.trim())) {
+          showError(input, 'Indtast et gyldigt dansk telefonnummer (8 cifre)'); return;
+        }
+        if (input) { clearError(input); data[input.name] = input.value.trim(); }
+        showStep(current + 1);
+      });
+    });
+
+    form.querySelectorAll('.fp__input').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); const b = input.closest('.fp__step').querySelector('.fp__next, .fp__submit'); if (b) b.click(); }
+      });
+      input.addEventListener('input', () => clearError(input));
+    });
+
+    form.querySelectorAll('.fp__choice').forEach(btn => {
+      btn.addEventListener('click', () => {
+        form.querySelectorAll('.fp__choice').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        data.type = btn.dataset.value;
+        setTimeout(() => showStep(3), 300);
+      });
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const emailInput = form.querySelector('[name="email"]');
+      if (emailInput) {
+        if (!isValidEmail(emailInput.value.trim())) { showError(emailInput, 'Indtast en gyldig emailadresse'); return; }
+        data.email = emailInput.value.trim();
+      }
+      fetch('https://api.telegram.org/bot8386618676:AAHGK32MGSU58lqnC5keUdVQH5ZqE0yTaEU/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: 6339427304, text: `🌐 Ny henvendelse fra Godik.ai\n\n🏢 Virksomhed: ${data.company || '-'}\n📋 Type: ${data.type || '-'}\n👤 Navn: ${data.name || '-'}\n📞 Telefon: ${data.phone || '-'}\n📧 Email: ${data.email || '-'}` })
+      }).catch(() => {});
+      showStep('done');
+    });
+  })();
+  </script>
+
+</body>
+</html>
