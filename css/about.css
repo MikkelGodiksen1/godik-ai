@@ -53,7 +53,7 @@
   max-width: 440px;
   border-radius: var(--radius-lg);
   object-fit: cover;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: auto;
 }
 
 @media (max-width: 809px) {
