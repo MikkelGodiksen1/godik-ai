@@ -49,6 +49,13 @@
   }
 }
 
+@media (max-width: 480px) {
+  .reviews__card {
+    width: 85vw;
+    padding: var(--space-5);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reviews__track {
     animation-play-state: paused;

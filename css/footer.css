@@ -422,5 +422,18 @@
     gap: var(--space-8);
   }
 
-  .cta-form { max-width: 400px; }
+  .cta-form {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-form {
+    padding: var(--space-6);
+  }
+
+  .cta-form__choices {
+    flex-direction: column;
+  }
 }

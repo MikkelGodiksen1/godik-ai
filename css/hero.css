@@ -283,21 +283,33 @@
   }
 
   .hero-form {
-    max-width: 400px;
+    max-width: 100%;
+    width: 100%;
+    margin-right: 0;
   }
 
   .hero__features {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
   }
 }
 
 @media (max-width: 480px) {
   .hero-form {
+    width: 100%;
     padding: var(--space-6);
   }
 
   .hero-form__choices {
     flex-direction: column;
+  }
+
+  .hero__features {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .hero__feature-number {
+    font-size: 1.5rem;
   }
 }

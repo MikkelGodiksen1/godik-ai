@@ -1,72 +1,42 @@
+/* Global mobile overrides - only rules NOT covered by component CSS */
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .section-header p {
+    font-size: 0.9375rem;
+  }
+
+  .gratis__ctas {
+    flex-direction: column;
+  }
+
+  .gratis__ctas a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .showcase {
+    height: 260px;
+  }
+}
+
 @media (max-width: 639px) {
   .container {
     padding: 0 var(--space-4);
   }
 
-  .values__grid,
-  .steps__grid {
-    grid-template-columns: 1fr;
-  }
-
   .reviews__card {
     width: 85vw;
   }
-
-  .reviews__track {
-    padding: 0 var(--space-4);
-  }
-
-  .competitors__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .competitors__col--highlighted {
-    order: -1;
-  }
-
-  .footer__inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-  }
-
-  .final-cta__buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .final-cta__buttons .btn-primary,
-  .final-cta__buttons .btn-secondary {
-    width: 100%;
-    justify-content: center;
-  }
 }
-
-@media (min-width: 640px) and (max-width: 809px) {
-  .values__grid,
-  .steps__grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .competitors__grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .competitors__col--highlighted {
-    order: -1;
-  }
-
-  .footer__inner {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer__brand {
-    grid-column: 1 / -1;
-  }
-}
-
