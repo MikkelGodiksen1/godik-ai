@@ -1,13 +1,12 @@
-/* ============================================
-   Marquee
-   ============================================ */
-
 .marquee-section {
-  padding: var(--space-6) 0;
+  padding: var(--space-4) 0;
   overflow: hidden;
   border-top: 1px solid var(--color-border-light);
   border-bottom: 1px solid var(--color-border-light);
   background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .marquee__track {
@@ -19,16 +18,21 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  animation: marquee-scroll 40s linear infinite;
+  animation: marquee-scroll 35s linear infinite;
 }
 
 @keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.marquee__track--reverse .marquee__content {
+  animation: marquee-scroll-reverse 35s linear infinite;
+}
+
+@keyframes marquee-scroll-reverse {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
 .marquee__content span {
