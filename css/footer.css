@@ -234,6 +234,29 @@
 .form-section {
   background: var(--color-bg-dark);
   padding: var(--section-py) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-section__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../Skærmbillede 2026-03-21 kl. 01.16.52.png');
+  background-size: cover;
+  background-position: left center;
+  z-index: 0;
+}
+
+.form-section__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
+}
+
+.form-section > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .form-section__inner {
