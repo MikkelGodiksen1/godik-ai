@@ -50,7 +50,7 @@
 
 .about__image img {
   width: 100%;
-  max-width: 440px;
+  max-width: 560px;
   border-radius: var(--radius-lg);
   object-fit: cover;
   aspect-ratio: auto;
